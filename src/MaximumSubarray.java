@@ -9,13 +9,9 @@
  */
 public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int curMax = nums[0];
-        int max = curMax;
-        for (int i = 1; i < nums.length; i++) {
-            curMax = Math.max(curMax + nums[i], nums[i]);
+        int curMax = 0, max = Integer.MIN_VALUE;
+        for (int num : nums) {
+            curMax = Math.max(0, curMax) + num;
             max = Math.max(max, curMax);
         }
         return max;
