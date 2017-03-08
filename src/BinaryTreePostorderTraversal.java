@@ -1,18 +1,19 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import support.TreeNode;
+
+import java.util.*;
 
 /**
  * <h1>145. Binary Tree Postorder Traversal</h1>
  * Given a binary tree, return the postorder traversal of its nodes' values.
  * <p>
  * For example: Given binary tree {1,#,2,3},
+ * <pre>
  * 1
- * \
- * 2
- * /
+ *  \
+ *   2
+ *  /
  * 3
+ * </pre>
  * return [3,2,1].
  *
  * @author Jerry
@@ -20,27 +21,25 @@ import java.util.List;
  */
 public class BinaryTreePostorderTraversal {
     public List<Integer> postorderTraversal(TreeNode root) {
-        LinkedList<Integer> ans = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
+        Map<TreeNode, Boolean> shouldVisit = new HashMap<>();
         while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);
-                ans.addFirst(root.val);
-                root = root.right;
+                shouldVisit.put(root, false);
+                root = root.left;
             }
             root = stack.pop();
-            root = root.left;
+            if (shouldVisit.get(root)) {
+                ans.add(root.val);
+                root = null;
+            } else {
+                stack.push(root);
+                shouldVisit.put(root, true);
+                root = root.right;
+            }
         }
         return ans;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
