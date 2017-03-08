@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>99. Recover Binary Search Tree</h1>
  * Two elements of a binary search tree (BST) are swapped by mistake. Recover the tree without changing its structure.
@@ -12,6 +14,23 @@ public class RecoverBinarySearchTree {
     private TreeNode prev;
 
     public void recoverTree(TreeNode root) {
+        first = second = prev = null;
+        dfs(root);
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+
+    private void dfs(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left);
+        checkMisplacement(root);
+        dfs(root.right);
+    }
+
+    public void recoverTreeMorris(TreeNode root) {
         first = second = prev = null;
 
         // Morris In-order Traversal
@@ -49,15 +68,5 @@ public class RecoverBinarySearchTree {
             second = curr;
         }
         prev = curr;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
