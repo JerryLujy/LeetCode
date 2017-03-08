@@ -1,5 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+import support.TreeNode;
 
 /**
  * <h1>98. Validate Binary Search Tree</h1>
@@ -15,30 +14,11 @@ import java.util.Deque;
  */
 public class ValidateBinarySearchTree {
     public boolean isValidBST(TreeNode root) {
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        TreeNode prev = null;
-        while (root != null || !stack.isEmpty()) {
-            while (root != null) {
-                stack.offerLast(root);
-                root = root.left;
-            }
-            TreeNode curr = stack.pollLast();
-            if (prev != null && curr.val <= prev.val) {
-                return false;
-            }
-            prev = curr;
-            root = curr.right;
-        }
-        return true;
+        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
+    private boolean validate(TreeNode root, long lb, long ub) {
+        return root == null || root.val > lb && root.val < ub &&
+                validate(root.left, lb, root.val) && validate(root.right, root.val, ub);
     }
 }
