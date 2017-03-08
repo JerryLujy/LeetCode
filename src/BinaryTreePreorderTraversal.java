@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -8,11 +10,13 @@ import java.util.List;
  * Given a binary tree, return the preorder traversal of its nodes' values.
  * <p>
  * For example: Given binary tree {1,#,2,3},
+ * <pre>
  * 1
- * \
- * 2
- * /
+ *  \
+ *   2
+ *  /
  * 3
+ * </pre>
  * return [1,2,3].
  *
  * @author Jerry
@@ -34,13 +38,27 @@ public class BinaryTreePreorderTraversal {
         return ans;
     }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
+    public List<Integer> preorderTraversalMorris(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        while (root != null) {
+            if (root.left == null) {
+                ans.add(root.val);
+                root = root.right;
+            } else {
+                TreeNode pred = root.left;
+                while (pred.right != null && pred.right != root) {
+                    pred = pred.right;
+                }
+                if (pred.right == null) {
+                    ans.add(root.val);
+                    pred.right = root;
+                    root = root.left;
+                } else {
+                    pred.right = null;
+                    root = root.right;
+                }
+            }
         }
+        return ans;
     }
 }
