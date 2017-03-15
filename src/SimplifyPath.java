@@ -1,5 +1,6 @@
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
+import java.util.Iterator;
 
 /**
  * <h1>71. Simplify Path</h1>
@@ -20,35 +21,24 @@ import java.util.LinkedList;
  */
 public class SimplifyPath {
     public String simplifyPath(String path) {
-        Deque<String> queue = new LinkedList<>();
-        int ind = 1;
-        String dir;
-        while (ind < path.length() && ind > 0) {
-            int nextSlash = path.indexOf('/', ind);
-            if (nextSlash == ind) {
-                ind++;
-                continue;
-            } else if (nextSlash == -1) {
-                dir = path.substring(ind);
-            } else {
-                dir = path.substring(ind, nextSlash);
-            }
-            if ("..".equals(dir)) {
-                if (!queue.isEmpty()) {
-                    queue.pollLast();
+        Deque<String> stack = new ArrayDeque<>();
+        int l = 1, r;
+        while (l < path.length() && l > 0) {
+            r = path.indexOf("/", l);
+            String dir = r == -1 ? path.substring(l) : path.substring(l, r);
+            if (dir.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
                 }
-            } else if (!".".equals(dir)) {
-                queue.offerLast(dir);
+            } else if (!dir.isEmpty() && !dir.equals(".")) {
+                stack.push(dir);
             }
-            ind = nextSlash + 1;
-        }
-        if (queue.isEmpty()) {
-            return "/";
+            l = r + 1;
         }
         StringBuilder sb = new StringBuilder();
-        while (!queue.isEmpty()) {
-            sb.append('/').append(queue.pollFirst());
+        for (Iterator<String> iter = stack.descendingIterator(); iter.hasNext(); ) {
+            sb.append("/").append(iter.next());
         }
-        return sb.toString();
+        return sb.length() == 0 ? "/" : sb.toString();
     }
 }
