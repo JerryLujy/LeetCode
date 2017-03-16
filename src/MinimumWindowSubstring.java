@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * <h1>76. Minimum Window Substring</h1>
  * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
@@ -18,45 +15,30 @@ import java.util.Map;
  */
 public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {
-        Map<Character, Integer> tmap = new HashMap<>();
-        Map<Character, Integer> smap = new HashMap<>();
+        int[] smap = new int[256];
+        int[] tmap = new int[256];
         for (char c : t.toCharArray()) {
-            if (!tmap.containsKey(c)) {
-                tmap.put(c, 0);
-            }
-            if (!smap.containsKey(c)) {
-                smap.put(c, 0);
-            }
-            tmap.put(c, tmap.get(c) + 1);
+            tmap[c]++;
         }
-        String ans = "";
-        int l = 0;
-        int r = 0;
-        for (; l < s.length(); l++) {
-            while (!containsAll(tmap, smap) && r < s.length()) {
-                char cur = s.charAt(r);
-                if (smap.containsKey(cur)) {
-                    smap.put(cur, smap.get(cur) + 1);
+        int l = 0, r = 0, minl = 0, minr = 0, minLen = s.length() + 1;
+        int count = t.length(); // Number of characters still need to be matched
+        while (r < s.length()) {
+            smap[s.charAt(r)]++;
+            if (smap[s.charAt(r)] <= tmap[s.charAt(r)]) {
+                count--;
+            }
+            r++;
+            if (count == 0) {
+                while (smap[s.charAt(l)] > tmap[s.charAt(l)]) {
+                    smap[s.charAt(l++)]--;
                 }
-                r++;
-            }
-            if (containsAll(tmap, smap) && (ans.length() == 0 || r - l < ans.length())) {
-                ans = s.substring(l, r);
-            }
-            char toRemove = s.charAt(l);
-            if (smap.containsKey(toRemove)) {
-                smap.put(toRemove, smap.get(toRemove) - 1);
+                if (r - l < minLen) {
+                    minLen = r - l;
+                    minl = l;
+                    minr = r;
+                }
             }
         }
-        return ans;
-    }
-
-    private boolean containsAll(Map<Character, Integer> tmap, Map<Character, Integer> smap) {
-        for (Character c : tmap.keySet()) {
-            if (smap.get(c) < tmap.get(c)) {
-                return false;
-            }
-        }
-        return true;
+        return count == 0 ? s.substring(minl, minr) : "";
     }
 }
