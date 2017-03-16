@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -38,18 +39,12 @@ public class ShuffleAnArray {
      * Returns a random shuffling of the array.
      */
     public int[] shuffle() {
-        int[] ans = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            ans[i] = i;
-        }
+        int[] ans = Arrays.copyOf(arr, arr.length);
         for (int i = 0; i < arr.length; i++) {
             int j = random.nextInt(arr.length);
             int tmp = ans[i];
             ans[i] = ans[j];
             ans[j] = tmp;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            ans[i] = arr[ans[i]];
         }
         return ans;
     }
