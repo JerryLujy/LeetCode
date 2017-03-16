@@ -10,57 +10,50 @@
  */
 public class SearchInRotatedSortedArray {
     public int search(int[] nums, int target) {
-        if (nums == null || nums.length < 1) {
-            return -1;
+        int l = 0, r = nums.length - 1;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (nums[m] > nums[r]) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
         }
-        if (nums[0] < nums[nums.length - 1]) {
-            return binarySearch(nums, 0, nums.length - 1, target);
+        int rot = l;
+        for (l = 0, r = nums.length - 1; l <= r; ) {
+            int m = (l + r) >>> 1;
+            int mReal = (m + rot) % nums.length;
+            if (nums[mReal] == target) {
+                return mReal;
+            } else if (nums[mReal] < target) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
         }
-        int largestInd = findLargestElemInd(nums);
-        if (target >= nums[0]) {
-            return binarySearch(nums, 0, largestInd, target);
-        } else {
-            return binarySearch(nums, largestInd + 1, nums.length - 1, target);
-        }
+        return -1;
     }
 
-    private int findLargestElemInd(int[] nums) {
-        if (nums.length == 1) {
-            return 0;
-        }
-        int l = 0;
-        int r = nums.length - 1;
-        int m;
-        while (true) {
-            if (l > r) throw new RuntimeException("Should not happen");
-            m = l + (r - l) / 2;
-            if (nums[m] > nums[m + 1]) {
+    public int search2(int[] nums, int target) {
+        for (int l = 0, r = nums.length - 1; l <= r; ) {
+            int m = (l + r) >>> 1;
+            if (nums[m] == target) {
                 return m;
             }
             if (nums[m] >= nums[l]) {
-                l = m + 1;
+                if (target >= nums[l] && target < nums[m]) {
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
             } else {
-                r = m - 1;
+                if (target <= nums[r] && target > nums[m]) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
             }
         }
-    }
-
-    private int binarySearch(int[] nums, int start, int end, int target) {
-        int l = start;
-        int r = end;
-        int m;
-        while (true) {
-            if (l > r) {
-                return -1;
-            }
-            m = l + (r - l) / 2;
-            if (nums[m] == target) {
-                return m;
-            } else if (nums[m] > target) {
-                r = m - 1;
-            } else {
-                l = m + 1;
-            }
-        }
+        return -1;
     }
 }
