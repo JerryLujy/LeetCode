@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>61. Rotate List</h1>
  * Given a list, rotate the list to the right by k places, where k is non-negative.
@@ -9,41 +11,22 @@
  */
 public class RotateList {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null) {
-            return null;
+        if (head == null || head.next == null) {
+            return head;
         }
-        ListNode dummy = head;
-        int length = 0;
-        while (dummy != null) {
-            length++;
-            dummy = dummy.next;
-        }
-        k = k % length;
-
-        dummy = new ListNode(0);
+        ListNode dummy = new ListNode(0), l = dummy, r = dummy;
         dummy.next = head;
-        head = dummy;
 
-        ListNode tail = dummy;
-        for (int i = 0; i < k; i++) {
-            tail = tail.next;
+        int len = 0;
+        for (; r.next != null; r = r.next) {
+            len++;
         }
-        while (tail.next != null) {
-            head = head.next;
-            tail = tail.next;
+        for (int i = 0; i < len - k % len; i++) {
+            l = l.next;
         }
-        tail.next = dummy.next;
-        dummy.next = head.next;
-        head.next = null;
+        r.next = dummy.next;
+        dummy.next = l.next;
+        l.next = null;
         return dummy.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }
