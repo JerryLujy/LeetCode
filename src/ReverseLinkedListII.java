@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>92. Reverse Linked List II</h1>
  * Reverse a linked list from position m to n. Do it in-place and in one-pass.
@@ -13,36 +15,18 @@
  */
 public class ReverseLinkedListII {
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode curr = head, prev = null;
+        ListNode dummy = new ListNode(0), tail = dummy;
+        dummy.next = head;
         for (int i = 1; i < m; i++) {
-            prev = curr;
-            curr = curr.next;
+            tail = tail.next;
         }
-        ListNode tmp = prev; // Save the position where the reversal starts
-        ListNode succ = curr.next;
+        head = tail.next;
         for (int i = m; i < n; i++) {
-            curr.next = prev;
-            prev = curr;
-            curr = succ;
-            succ = curr.next;
+            ListNode curr = head.next;
+            head.next = curr.next;
+            curr.next = tail.next;
+            tail.next = curr;
         }
-        curr.next = prev;
-        if (tmp == null) {
-            head.next = succ;
-            return curr;
-        } else {
-            tmp.next.next = succ;
-            tmp.next = curr;
-            return head;
-        }
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
+        return dummy.next;
     }
 }
