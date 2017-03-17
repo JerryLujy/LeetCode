@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>25. Reverse Nodes in k-Group</h1>
  * Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
@@ -18,40 +20,27 @@ public class ReverseNodesInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode cur = dummy;
-
-        ListNode tmp1, tmp2;
-        while (cur != null && (tmp1 = kth(cur, k)) != null) {
-            tmp2 = tmp1.next;
-            for (int i = k - 1; i >= 1; i--) {
-                ListNode from = kth(cur, i);
-                from.next.next = from;
+        ListNode tail = dummy;
+        while (hasEnough(tail, k)) {
+            head = tail.next;
+            for (int i = 0; i < k - 1; i++) { // Flip k - 1 links between k nodes
+                ListNode curr = head.next;
+                head.next = curr.next;
+                curr.next = tail.next;
+                tail.next = curr;
             }
-            cur.next.next = tmp2;
-            cur.next = tmp1;
-            cur = kth(cur, k);
+            tail = head;
         }
         return dummy.next;
     }
 
-    // Get the k-th node from node s
-    private ListNode kth(ListNode s, int k) {
+    private boolean hasEnough(ListNode tail, int k) {
         for (int i = 0; i < k; i++) {
-            if (s.next == null) {
-                return null;
-            } else {
-                s = s.next;
+            if (tail == null) {
+                return false;
             }
+            tail = tail.next;
         }
-        return s;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
+        return tail != null;
     }
 }
