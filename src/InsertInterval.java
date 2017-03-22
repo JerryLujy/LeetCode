@@ -1,3 +1,5 @@
+import support.Interval;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,37 +20,21 @@ public class InsertInterval {
         if (intervals == null || newInterval == null) {
             return intervals;
         }
-
         List<Interval> rst = new ArrayList<>();
-        int insertPos = 0;
-
-        for (Interval interval : intervals) {
-            if (interval.end < newInterval.start) {
-                rst.add(interval);
-                insertPos++;
-            } else if (newInterval.end < interval.start) {
-                rst.add(interval);
+        int pos = 0;
+        for (int i = 0; i < intervals.size(); i++) {
+            Interval cur = intervals.get(i);
+            if (cur.end < newInterval.start) {
+                rst.add(cur);
+                pos = i + 1;
+            } else if (cur.start > newInterval.end) {
+                rst.add(cur);
             } else {
-                newInterval.start = Math.min(newInterval.start, interval.start);
-                newInterval.end = Math.max(newInterval.end, interval.end);
+                newInterval.start = Math.min(cur.start, newInterval.start);
+                newInterval.end = Math.max(cur.end, newInterval.end);
             }
         }
-        rst.add(insertPos, newInterval);
+        rst.add(pos, newInterval);
         return rst;
-    }
-
-    private static class Interval {
-        int start;
-        int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
     }
 }
