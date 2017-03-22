@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>164. Maximum Gap</h1>
@@ -21,26 +22,34 @@ public class MaximumGap {
             max = Math.max(max, num);
             min = Math.min(min, num);
         }
-        int bucketSize = Math.max(1, (max - min) / (nums.length - 1));
-        int bucketNum = 1 + (max - min) / bucketSize;
-        int[] maxVals = new int[bucketNum];
-        int[] minVals = new int[bucketNum];
-        Arrays.fill(maxVals, Integer.MIN_VALUE);
-        Arrays.fill(minVals, Integer.MAX_VALUE);
-        for (int num : nums) {
-            int ind = (num - min) / bucketSize;
-            maxVals[ind] = Math.max(maxVals[ind], num);
-            minVals[ind] = Math.min(minVals[ind], num);
+        int bucketGap = 1 + (max - min) / nums.length;
+        int numBuckets = 1 + (max - min) / bucketGap;
+        List<List<Integer>> buckets = new ArrayList<>(numBuckets);
+        for (int i = 0; i < numBuckets; i++) {
+            buckets.add(new ArrayList<>());
         }
-        int lastMax = min;
-        int maxGap = 0;
-        for (int i = 0; i < bucketNum; i++) {
-            if (maxVals[i] == Integer.MIN_VALUE && minVals[i] == Integer.MAX_VALUE) {
+        for (int num : nums) {
+            List<Integer> bucket = buckets.get((num - min) / bucketGap);
+            if (bucket.isEmpty()) {
+                bucket.add(num); // Min
+                bucket.add(num); // Max
+            } else {
+                if (num < bucket.get(0)) {
+                    bucket.set(0, num);
+                }
+                if (num > bucket.get(1)) {
+                    bucket.set(1, num);
+                }
+            }
+        }
+        int ans = 0, prevBucket = 0;
+        for (int i = 1; i < numBuckets; i++) {
+            if (buckets.get(i).isEmpty()) {
                 continue;
             }
-            maxGap = Math.max(maxGap, minVals[i] - lastMax);
-            lastMax = maxVals[i];
+            ans = Math.max(ans, buckets.get(i).get(0) - buckets.get(prevBucket).get(1));
+            prevBucket = i;
         }
-        return maxGap;
+        return ans;
     }
 }
