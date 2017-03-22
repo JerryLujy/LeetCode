@@ -1,5 +1,7 @@
+import support.Interval;
+
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,38 +14,23 @@ import java.util.List;
  */
 public class MergeIntervals {
     public List<Interval> merge(List<Interval> intervals) {
-        if (intervals == null || intervals.size() < 2) {
-            return intervals;
+        List<Interval> ans = new ArrayList<>();
+        if (intervals.size() == 0) {
+            return ans;
         }
-        Collections.sort(intervals, (a, b) -> Integer.compare(a.start, b.start));
-
-        List<Interval> merged = new ArrayList<>();
-        Interval last = new Interval(intervals.get(0).start, intervals.get(0).end);
+        intervals.sort(Comparator.comparingInt(i -> i.start));
+        int start = intervals.get(0).start, end = intervals.get(0).end;
         for (int i = 1; i < intervals.size(); i++) {
             Interval cur = intervals.get(i);
-            if (cur.start <= last.end) {
-                last.end = Math.max(last.end, cur.end);
+            if (cur.start <= end) {
+                end = Math.max(end, cur.end);
             } else {
-                merged.add(last);
-                last = new Interval(cur.start, cur.end);
+                ans.add(new Interval(start, end));
+                start = cur.start;
+                end = cur.end;
             }
         }
-        merged.add(last);
-        return merged;
-    }
-
-    private static class Interval {
-        int start;
-        int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
+        ans.add(new Interval(start, end));
+        return ans;
     }
 }
