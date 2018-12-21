@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>19. Remove Nth Node From End of List</h1>
  * Given a linked list, remove the nth node from the end of list and return its head.
@@ -25,15 +27,5 @@ public class RemoveNthNodeFromEndofList {
         }
         b.next = b.next.next;
         return head;
-    }
-
-    // Definition for singly-linked list.
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

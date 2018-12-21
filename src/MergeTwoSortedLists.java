@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>21. Merge Two Sorted Lists</h1>
  * Merge two sorted linked lists and return it as a new list.
@@ -39,14 +41,5 @@ public class MergeTwoSortedLists {
             cur.next = l2;
         }
         return rst;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

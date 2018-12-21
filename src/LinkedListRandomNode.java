@@ -1,3 +1,5 @@
+import support.ListNode;
+
 import java.util.Random;
 
 /**
@@ -37,14 +39,5 @@ public class LinkedListRandomNode {
             }
         }
         return ans;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

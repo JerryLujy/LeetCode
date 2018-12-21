@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>270. Closest Binary Search Tree Value</h1>
  * Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
@@ -17,15 +19,5 @@ public class ClosestBinarySearchTreeValue {
         }
         int closest = closestValue(next, target);
         return Math.abs(root.val - target) > Math.abs(closest - target) ? closest : root.val;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

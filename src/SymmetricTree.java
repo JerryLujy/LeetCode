@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>101. Symmetric Tree</h1>
  * Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
@@ -17,15 +19,5 @@ public class SymmetricTree {
             return false;
         }
         return n1.val == n2.val && isSymmetric(n1.left, n2.right) && isSymmetric(n1.right, n2.left);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>108. Convert Sorted Array to Binary Search Tree</h1>
  * Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
@@ -19,15 +21,5 @@ public class ConvertSortedArrayToBinarySearchTree {
         root.left = buildBST(nums, start, mid);
         root.right = buildBST(nums, mid + 1, end);
         return root;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

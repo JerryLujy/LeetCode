@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.*;
 
 /**
@@ -77,15 +79,5 @@ public class BinaryTreeVerticalOrderTraversal {
             ans.add(col);
         }
         return ans;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

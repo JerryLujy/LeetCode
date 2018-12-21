@@ -1,3 +1,5 @@
+import support.Interval;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +36,5 @@ public class MeetingRoomsII {
             ans = Math.max(ans, cur);
         }
         return ans;
-    }
-
-    public class Interval {
-        int start;
-        int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
     }
 }

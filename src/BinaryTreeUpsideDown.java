@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -46,15 +48,5 @@ public class BinaryTreeUpsideDown {
         }
         curr.left = curr.right = null;
         return root;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

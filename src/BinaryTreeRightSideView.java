@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +37,5 @@ public class BinaryTreeRightSideView {
         }
         getRightNodes(root.right, ans, depth + 1);
         getRightNodes(root.left, ans, depth + 1);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

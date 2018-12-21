@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,15 +64,5 @@ public class UniqueBinarySearchTreesII {
             }
         }
         return dp.get(1).get(n);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

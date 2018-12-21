@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +42,5 @@ public class PathSumII {
             findPaths(ans, path, node.right, sum - node.val);
         }
         path.remove(path.size() - 1);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

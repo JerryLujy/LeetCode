@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>222. Count Complete Tree Nodes</h1>
  * Given a complete binary tree, count the number of nodes.
@@ -25,16 +27,6 @@ public class CountCompleteTreeNodes {
             return (2 << lh) - 1;
         } else {
             return 1 + countNodes(root.left) + countNodes(root.right);
-        }
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
         }
     }
 }

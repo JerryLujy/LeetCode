@@ -1,3 +1,5 @@
+import support.ListNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -36,16 +38,6 @@ public class ReorderList {
             next = next.next;
             stack.peek().next.next = head;
             head = stack.pop();
-        }
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
         }
     }
 }

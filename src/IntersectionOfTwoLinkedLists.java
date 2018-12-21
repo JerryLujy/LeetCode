@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>160. Intersection of Two Linked Lists</h1>
  * Write a program to find the node at which the intersection of two singly linked lists begins.
@@ -32,15 +34,5 @@ public class IntersectionOfTwoLinkedLists {
             b = b == null ? headA : b.next;
         }
         return a;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
     }
 }

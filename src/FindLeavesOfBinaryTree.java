@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +38,5 @@ public class FindLeavesOfBinaryTree {
         }
         ans.get(level).add(node.val);
         return level;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

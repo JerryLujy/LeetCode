@@ -1,3 +1,5 @@
+import support.ListNode;
+
 import java.util.PriorityQueue;
 
 /**
@@ -32,14 +34,5 @@ public class MergeKSortedLists {
             }
         }
         return dummy.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

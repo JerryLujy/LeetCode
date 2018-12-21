@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -38,15 +40,5 @@ public class ClosestBinarySearchTreeValueII {
             root = root.right;
         }
         return new ArrayList<>(ans);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

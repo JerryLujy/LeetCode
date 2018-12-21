@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>234. Palindrome Linked List</h1>
  * Given a singly linked list, determine if it is a palindrome.
@@ -38,14 +40,5 @@ public class PalindromeLinkedList {
             cur = next;
         }
         return isPalindrome;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

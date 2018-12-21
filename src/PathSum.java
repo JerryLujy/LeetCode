@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>112. Path Sum</h1>
  * Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that
@@ -26,15 +28,5 @@ public class PathSum {
             return true;
         }
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

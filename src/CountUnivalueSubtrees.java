@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,15 +37,5 @@ public class CountUnivalueSubtrees {
                 (root.right == null || isUnivalue.get(root.right) && root.val == root.right.val);
         isUnivalue.put(root, univalue);
         return (univalue ? 1 : 0) + leftCount + rightCount;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

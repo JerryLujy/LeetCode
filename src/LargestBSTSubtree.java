@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>333. Largest BST Subtree</h1>
  * Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest number of nodes in it.
@@ -39,15 +41,5 @@ public class LargestBSTSubtree {
             return 0;
         }
         return 1 + count(root.left) + count(root.right);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

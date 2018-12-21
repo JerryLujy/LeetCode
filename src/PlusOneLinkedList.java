@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>369. Plus One Linked List</h1>
  * Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
@@ -40,14 +42,5 @@ public class PlusOneLinkedList {
             return newNode;
         }
         return head;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>141. Linked List Cycle</h1>
  * Given a linked list, determine if it has a cycle in it.
@@ -18,15 +20,5 @@ public class LinkedListCycle {
             }
         }
         return false;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
     }
 }

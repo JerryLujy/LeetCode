@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,15 +52,5 @@ public class HouseRobberIII {
         }
         mem.put(root, Math.max(rob, notRob));
         return Math.max(rob, notRob);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

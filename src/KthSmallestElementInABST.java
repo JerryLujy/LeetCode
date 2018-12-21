@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>230. Kth Smallest Element in a BST</h1>
  * Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
@@ -24,15 +26,5 @@ public class KthSmallestElementInABST {
             return 0;
         }
         return 1 + numNodes(root.left) + numNodes(root.right);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

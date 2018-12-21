@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>142. Linked List Cycle II</h1>
  * Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
@@ -24,15 +26,5 @@ public class LinkedListCycleII {
             }
         }
         return null;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
     }
 }

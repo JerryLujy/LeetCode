@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>83. Remove Duplicates from Sorted List</h1>
  * Given a sorted linked list, delete all duplicates such that each element appear only once.
@@ -18,14 +20,5 @@ public class RemoveDuplicatesFromSortedList {
             cur = cur.next;
         }
         return head;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

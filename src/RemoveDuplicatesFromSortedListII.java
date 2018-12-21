@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>82. Remove Duplicates from Sorted List II</h1>
  * Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
@@ -25,14 +27,5 @@ public class RemoveDuplicatesFromSortedListII {
             }
         }
         return dummy.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

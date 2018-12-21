@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>298. Binary Tree Longest Consecutive Sequence</h1>
  * Given a binary tree, find the length of the longest consecutive sequence path.
@@ -42,15 +44,5 @@ public class BinaryTreeLongestConsecutiveSequence {
         int leftLen = dfs(root.left, root, newLength);
         int rightLen = dfs(root.right, root, newLength);
         return Math.max(length, Math.max(leftLen, rightLen));
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

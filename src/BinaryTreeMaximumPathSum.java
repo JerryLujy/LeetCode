@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>124. Binary Tree Maximum Path Sum</h1>
  * Given a binary tree, find the maximum path sum. For this problem, a path is defined as
@@ -32,15 +34,5 @@ public class BinaryTreeMaximumPathSum {
         int rightSum = Math.max(findMaxPath(root.right), 0);
         maxSum = Math.max(maxSum, leftSum + rightSum + root.val);
         return root.val + Math.max(leftSum, rightSum);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

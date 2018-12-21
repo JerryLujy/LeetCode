@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>24. Swap Nodes in Pairs</h1>
  * Given a linked list, swap every two adjacent nodes and return its head.
@@ -22,14 +24,5 @@ public class SwapNodesInPairs {
             cur = cur.next.next;
         }
         return dummy.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

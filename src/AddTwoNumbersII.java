@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>445. Add Two Numbers II</h1>
  * You are given two non-empty linked lists representing two non-negative integers.
@@ -41,14 +43,5 @@ public class AddTwoNumbersII {
             curr = next;
         }
         return prev;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

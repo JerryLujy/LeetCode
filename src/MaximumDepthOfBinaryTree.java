@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>104. Maximum Depth of Binary Tree</h1>
  * Given a binary tree, find its maximum depth.
@@ -13,15 +15,5 @@ public class MaximumDepthOfBinaryTree {
             return 0;
         }
         return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

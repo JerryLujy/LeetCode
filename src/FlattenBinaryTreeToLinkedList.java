@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -50,16 +52,6 @@ public class FlattenBinaryTreeToLinkedList {
             if (!stack.isEmpty()) {
                 curr.right = stack.peekLast();
             }
-        }
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
         }
     }
 }

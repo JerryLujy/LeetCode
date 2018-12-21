@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>2. Add Two Numbers</h1>
  * You are given two linked lists representing two non-negative numbers.
@@ -43,14 +45,5 @@ public class AddTwoNumbers {
         ListNode rst = new ListNode(sum % 10);
         rst.next = addTwoNumbersHelper(l1.next, l2.next, sum / 10);
         return rst;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

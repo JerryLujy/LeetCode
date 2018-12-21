@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>111. Minimum Depth of Binary Tree</h1>
  * Given a binary tree, find its minimum depth.
@@ -18,16 +20,6 @@ public class MinimumDepthOfBinaryTree {
             return 1 + leftDepth + rightDepth;
         } else {
             return 1 + Math.min(leftDepth, rightDepth);
-        }
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
         }
     }
 }

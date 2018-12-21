@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>100. Same Tree</h1>
  * Given two binary trees, write a function to check if they are equal or not.
@@ -13,16 +15,6 @@ public class SameTree {
             return isSameTree(p.left, q.left) && isSameTree(p.right, q.right) && p.val == q.val;
         } else {
             return p == null && q == null;
-        }
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
         }
     }
 }

@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>147. Insertion Sort List</h1>
  * Sort a linked list using insertion sort.
@@ -20,14 +22,5 @@ public class InsertionSortList {
             prev.next = curr;
         }
         return dummy.next;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

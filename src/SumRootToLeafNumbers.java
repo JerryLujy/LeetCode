@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>129. Sum Root to Leaf Numbers</h1>
  * Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
@@ -31,15 +33,5 @@ public class SumRootToLeafNumbers {
             return cur * 10 + root.val;
         }
         return sumNumbers(root.left, cur * 10 + root.val) + sumNumbers(root.right, cur * 10 + root.val);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

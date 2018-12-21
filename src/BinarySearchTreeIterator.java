@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -39,15 +41,5 @@ public class BinarySearchTreeIterator {
             next = next.left;
         }
         return cur.val;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

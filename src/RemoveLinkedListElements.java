@@ -1,3 +1,5 @@
+import support.ListNode;
+
 /**
  * <h1>203. Remove Linked List Elements</h1>
  * Remove all elements from a linked list of integers that have value val.
@@ -21,14 +23,5 @@ public class RemoveLinkedListElements {
             head = head.next;
         }
         return dummy.next;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

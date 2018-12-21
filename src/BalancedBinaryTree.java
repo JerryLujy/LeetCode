@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>110. Balanced Binary Tree</h1>
  * Given a binary tree, determine if it is height-balanced.
@@ -25,15 +27,5 @@ public class BalancedBinaryTree {
             return -1;
         }
         return 1 + Math.max(leftDepth, rightDepth);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

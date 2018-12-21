@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
@@ -59,15 +61,5 @@ public class SerializeAndDeserializeBinaryTree {
         newNode.left = deserialize(tokens);
         newNode.right = deserialize(tokens);
         return newNode;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

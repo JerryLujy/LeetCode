@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>285. Inorder Successor in BST</h1>
  * Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
@@ -19,15 +21,5 @@ public class InorderSuccessorInBST {
             }
         }
         return succ;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

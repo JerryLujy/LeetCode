@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>450. Delete Node in a BST</h1>
  * Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
@@ -55,15 +57,5 @@ public class DeleteNodeInABST {
             succ.right = root.right;
         }
         return succ;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

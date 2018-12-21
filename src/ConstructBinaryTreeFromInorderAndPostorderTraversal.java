@@ -1,3 +1,5 @@
+import support.TreeNode;
+
 /**
  * <h1>106. Construct Binary Tree from Inorder and Postorder Traversal</h1>
  * Given inorder and postorder traversal of a tree, construct the binary tree.
@@ -28,15 +30,5 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
         root.left = buildTree(inorder, is, pos, postorder, ps, ps + leftNum);
         root.right = buildTree(inorder, pos + 1, ie, postorder, pe - 1 - rightNum, pe - 1);
         return root;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
