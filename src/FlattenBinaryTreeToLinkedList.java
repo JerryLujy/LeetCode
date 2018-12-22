@@ -54,4 +54,25 @@ public class FlattenBinaryTreeToLinkedList {
             }
         }
     }
+
+    public void flatten2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        getLastNode(root);
+    }
+
+    private TreeNode getLastNode(TreeNode node) {
+        if (node.left != null) {
+            TreeNode leftTail = getLastNode(node.left);
+            leftTail.right = node.right;
+            node.right = node.left;
+            node.left = null;
+            node = leftTail;
+        }
+        if (node.right != null) {
+            return getLastNode(node.right);
+        }
+        return node;
+    }
 }
