@@ -42,4 +42,27 @@ public class ScrambleString {
         }
         return false;
     }
+
+    public boolean isScramble2(String s1, String s2) {
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+        int len = s1.length();
+        boolean[][][] mem = new boolean[len][len][len + 1];
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                mem[i][j][1] = s1.charAt(i) == s2.charAt(j);
+            }
+        }
+        for (int l = 2; l <= len; l++) {
+            for (int i = 0; i < len - l + 1; i++) {
+                for (int j = 0; j < len - l + 1; j++) {
+                    for (int k = 1; k < l; k++) {
+                        mem[i][j][l] |= mem[i][j][k] && mem[i + k][j + k][l - k] || mem[i][j + l - k][k] && mem[i + k][j][l - k];
+                    }
+                }
+            }
+        }
+        return mem[0][0][len];
+    }
 }
