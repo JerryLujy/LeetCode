@@ -18,17 +18,13 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
         if (ps == pe) {
             return null;
         }
-        int rootVal = postorder[pe - 1];
-        int pos = is;
-        while (inorder[pos] != rootVal) {
-            pos++;
+        int rootVal = postorder[pe - 1], pos = is, leftNum = 0;
+        while (inorder[pos++] != rootVal) {
+            leftNum++;
         }
-        int leftNum = pos - is;
-        int rightNum = ie - pos - 1;
-
         TreeNode root = new TreeNode(rootVal);
-        root.left = buildTree(inorder, is, pos, postorder, ps, ps + leftNum);
-        root.right = buildTree(inorder, pos + 1, ie, postorder, pe - 1 - rightNum, pe - 1);
+        root.left = buildTree(inorder, is, is + leftNum, postorder, ps, ps + leftNum);
+        root.right = buildTree(inorder, is + leftNum + 1, ie, postorder, ps + leftNum, pe - 1);
         return root;
     }
 }
