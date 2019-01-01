@@ -22,20 +22,21 @@ import java.util.Iterator;
 public class SimplifyPath {
     public String simplifyPath(String path) {
         Deque<String> stack = new ArrayDeque<>();
-        int l = 1, r;
-        while (l < path.length() && l > 0) {
-            r = path.indexOf("/", l);
-            String dir = r == -1 ? path.substring(l) : path.substring(l, r);
-            if (dir.equals("..")) {
-                if (!stack.isEmpty()) {
-                    stack.pop();
-                }
-            } else if (!dir.isEmpty() && !dir.equals(".")) {
-                stack.push(dir);
-            }
-            l = r + 1;
-        }
         StringBuilder sb = new StringBuilder();
+        for (char c : (path + "/").toCharArray()) {
+            if (c == '/') {
+                String token = sb.toString();
+                if ("..".equals(token) && !stack.isEmpty()) {
+                    stack.pop();
+                } else if (token.length() > 0 && !".".equals(token) && !"..".equals(token)) {
+                    stack.push(token);
+                }
+                sb.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        sb.setLength(0);
         for (Iterator<String> iter = stack.descendingIterator(); iter.hasNext(); ) {
             sb.append("/").append(iter.next());
         }
