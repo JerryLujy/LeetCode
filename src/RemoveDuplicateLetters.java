@@ -19,18 +19,18 @@ public class RemoveDuplicateLetters {
         for (char c : s.toCharArray()) {
             occurences[c - 'a']++;
         }
-
         Deque<Character> stack = new ArrayDeque<>();
+        boolean[] visited = new boolean[26];
         for (char c : s.toCharArray()) {
             occurences[c - 'a']--;
-            if (stack.contains(c)) { // Already in the result, ignore it
+            if (visited[c - 'a']) {
                 continue;
             }
             while (!stack.isEmpty() && stack.peek() > c && occurences[stack.peek() - 'a'] > 0) {
-                // Remove stack top if current character is smaller and the removed char can be added later
-                stack.pop();
+                visited[stack.pop() - 'a'] = false;
             }
             stack.push(c);
+            visited[c - 'a'] = true;
         }
         StringBuilder sb = new StringBuilder();
         for (char c : stack) {
