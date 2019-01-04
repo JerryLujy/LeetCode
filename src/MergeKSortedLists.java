@@ -1,5 +1,6 @@
 import support.ListNode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -17,7 +18,7 @@ public class MergeKSortedLists {
 
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
-        PriorityQueue<ListNode> pq = new PriorityQueue<>((n1, n2) -> Integer.compare(n1.val, n2.val));
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(l -> l.val));
 
         for (ListNode list : lists) {
             if (list != null) {
