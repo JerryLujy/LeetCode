@@ -30,18 +30,14 @@ public class WordPattern {
         Set<String> strings = new HashSet<>();
         for (int i = 0; i < pattern.length(); i++) {
             char c = pattern.charAt(i);
-            String s = arr[i];
-            if (map.containsKey(c)) {
-                if (!map.get(c).equals(s)) {
-                    return false;
-                }
-            } else {
-                if (strings.contains(s)) {
-                    return false;
-                }
-                map.put(c, s);
-                strings.add(s);
+            if (map.containsKey(c) && !map.get(c).equals(arr[i])) {
+                return false;
             }
+            if (!map.containsKey(c) && strings.contains(arr[i])) {
+                return false;
+            }
+            map.put(c, arr[i]);
+            strings.add(arr[i]);
         }
         return true;
     }
