@@ -1,7 +1,5 @@
 import java.util.ArrayDeque;
-import java.util.HashSet;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * <h1>490. The Maze</h1>
@@ -10,7 +8,7 @@ import java.util.Set;
  * Given the ball's start position, the destination and the maze, determine whether the ball could stop at the destination.
  * The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space.
  * You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.
- *
+ * <p>
  * Example 1:
  * Input 1: a maze represented by a 2D array
  *
@@ -24,9 +22,8 @@ import java.util.Set;
  * Input 3: destination coordinate (rowDest, colDest) = (4, 4)
  * Output: true
  * Explanation: One possible way is : left -> down -> left -> down -> right -> down -> right.
- *
+ * <p>
  * Example 2:
- *
  * Input 1: a maze represented by a 2D array
  *
  * 0 0 1 0 0
@@ -44,30 +41,39 @@ import java.util.Set;
  * @since 1/20/19
  */
 public class TheMaze {
+    private static int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};
+
     public boolean hasPath(int[][] maze, int[] start, int[] destination) {
         int m = maze.length, n = maze[0].length;
-        Set<Integer> visited = new HashSet<>();
-        Queue<Integer> q = new ArrayDeque<>();
-        q.offer(start[0] * n + start[1]);
+        boolean[][] visited = new boolean[m][n];
+        Queue<Point> q = new ArrayDeque<>();
+        q.offer(new Point(start[0], start[1]));
         while (!q.isEmpty()) {
-            int cur = q.poll();
-            visited.add(cur);
-            int x = cur / n, y = cur % n;
-            if (x == destination[0] && y == destination[1]) {
+            Point cur = q.poll();
+            if (cur.x == destination[0] && cur.y == destination[1]) {
                 return true;
             }
-            while (x + 1 < m && maze[x + 1][y] == 0) x++;
-            if (!visited.contains(x * n + y)) q.offer(x * n + y);
-            x = cur / n;
-            while (x - 1 >= 0 && maze[x - 1][y] == 0) x--;
-            if (!visited.contains(x * n + y)) q.offer(x * n + y);
-            x = cur / n;
-            while (y + 1 < n && maze[x][y + 1] == 0) y++;
-            if (!visited.contains(x * n + y)) q.offer(x * n + y);
-            y = cur % n;
-            while (y - 1 >= 0 && maze[x][y - 1] == 0) y--;
-            if (!visited.contains(x * n + y)) q.offer(x * n + y);
+            visited[cur.x][cur.y] = true;
+            for (int i = 0; i < 4; i++) {
+                int x = cur.x, y = cur.y;
+                while (x + dx[i] >= 0 && x + dx[i] < m && y + dy[i] >= 0 && y + dy[i] < n &&
+                        maze[x + dx[i]][y + dy[i]] == 0) {
+                    x += dx[i];
+                    y += dy[i];
+                }
+                if (!visited[x][y]) {
+                    q.offer(new Point(x, y));
+                }
+            }
         }
         return false;
+    }
+
+    private static class Point {
+        int x, y;
+        Point(int _x, int _y) {
+            x = _x;
+            y = _y;
+        }
     }
 }
