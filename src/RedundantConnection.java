@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import support.UnionFind;
 
 /**
  * <h1>684. Redundant Connection</h1>
@@ -47,32 +46,5 @@ public class RedundantConnection {
             uf.union(edge[0], edge[1]);
         }
         return new int[0];
-    }
-
-    private static class UnionFind {
-        Map<Integer, Integer> fathers;
-        UnionFind(int n) {
-            fathers = new HashMap<>();
-            for (int i = 1; i <= n; i++) {
-                fathers.put(i, i);
-            }
-        }
-
-        int find(int i) {
-            int ans = i;
-            while (fathers.get(ans) != ans) {
-                ans = fathers.get(ans);
-            }
-            while (i != ans) {
-                int father = fathers.get(i);
-                fathers.put(i, ans);
-                i = father;
-            }
-            return ans;
-        }
-
-        void union(int i, int j) {
-            fathers.put(find(i), find(j));
-        }
     }
 }

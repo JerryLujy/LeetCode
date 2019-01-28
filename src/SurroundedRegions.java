@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import support.UnionFind;
 
 /**
  * <h1>130. Surrounded Regions</h1>
@@ -52,39 +51,6 @@ public class SurroundedRegions {
                 if (board[i][j] == 'O' && uf.find(i * n + j) != uf.find(m * n)) {
                     board[i][j] = 'X';
                 }
-            }
-        }
-    }
-
-    private static class UnionFind {
-        Map<Integer, Integer> fathers;
-
-        UnionFind(int n) {
-            fathers = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                fathers.put(i, i);
-            }
-        }
-
-        int find(int x) {
-            int father = fathers.get(x);
-            while (father != fathers.get(father)) {
-                father = fathers.get(father);
-            }
-            int tmp;
-            while (x != father) {
-                tmp = fathers.get(x);
-                fathers.put(x, father);
-                x = tmp;
-            }
-            return father;
-        }
-
-        void union(int x, int y) {
-            int xfather = find(x);
-            int yfather = find(y);
-            if (xfather != yfather) {
-                fathers.put(xfather, yfather);
             }
         }
     }
