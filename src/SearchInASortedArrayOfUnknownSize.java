@@ -32,7 +32,6 @@ public class SearchInASortedArrayOfUnknownSize {
             } else {
                 l = mid + 1;
             }
-            System.out.println((4 - 3) >> 1);
         }
         return -1;
     }
