@@ -20,7 +20,7 @@ public class RussianDollEnvelopes {
             return 0;
         }
         List<int[]> list = Arrays.asList(envelopes);
-        list.sort(Comparator.comparingInt((int[] a) -> a[0]).thenComparing(Comparator.comparingInt((int[] a) -> a[1])));
+        list.sort(Comparator.comparingInt((int[] a) -> a[0]).thenComparing((int[] a) -> a[1]));
         int[] dp = new int[list.size()];
         Arrays.fill(dp, 1);
         int ans = 1;
