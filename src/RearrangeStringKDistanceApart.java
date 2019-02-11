@@ -27,8 +27,7 @@ public class RearrangeStringKDistanceApart {
         for (char c : s.toCharArray()) {
             count[c - 'a']++;
         }
-        Queue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt((int[] a) -> a[1]).reversed()
-                .thenComparing(Comparator.comparingInt((int[] a) -> a[0])));
+        Queue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt((int[] a) -> a[1]).reversed().thenComparing((int[] a) -> a[0]));
         for (int i = 0; i < 26; i++) {
             if (count[i] > 0) {
                 pq.offer(new int[]{i, count[i]});
