@@ -22,9 +22,6 @@ import java.util.*;
  */
 public class AlienDictionary {
     public String alienOrder(String[] words) {
-        if (words == null || words.length == 0) {
-            return "";
-        }
         Map<Character, Integer> indegree = new HashMap<>();
         Map<Character, Set<Character>> graph = new HashMap<>();
         for (String word : words) {
@@ -60,11 +57,9 @@ public class AlienDictionary {
             Character curr = queue.poll();
             sb.append(curr);
             for (Character next : graph.get(curr)) {
-                int degree = indegree.get(next);
-                if (degree == 1) {
+                if (indegree.merge(next, -1, Integer::sum) == 0) {
                     queue.offer(next);
                 }
-                indegree.put(next, degree - 1);
             }
         }
         return sb.length() == indegree.size() ? sb.toString() : "";
