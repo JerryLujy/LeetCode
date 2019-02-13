@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * <h1>223. Rectangle Area</h1>
  * Find the total area covered by two rectilinear rectangles in a 2D plane.
@@ -13,16 +11,12 @@ import java.util.Arrays;
  */
 public class RectangleArea {
     public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        boolean vertOverlap = A < G && E < C;
-        boolean horiOverlap = B < H && F < D;
-        int total = (C - A) * (D - B) + (G - E) * (H - F);
-        if (vertOverlap && horiOverlap) {
-            int[] xs = new int[]{A, C, E, G};
-            int[] ys = new int[]{B, D, F, H};
-            Arrays.sort(xs);
-            Arrays.sort(ys);
-            return total - (xs[2] - xs[1]) * (ys[2] - ys[1]);
+        int l = Math.max(A, E), r = Math.min(C, G);
+        int b = Math.max(B, F), t = Math.min(D, H);
+        int overlap = 0;
+        if (l < r && b < t) {
+            overlap =  (r - l) * (t - b);
         }
-        return total;
+        return (C - A) * (D - B) + (G - E) * (H - F) - overlap;
     }
 }
