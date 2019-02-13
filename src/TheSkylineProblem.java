@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * <h1>218. The Skyline Problem</h1>
@@ -37,24 +40,23 @@ public class TheSkylineProblem {
             points.add(new int[]{building[0], building[2]});
             points.add(new int[]{building[1], -building[2]});
         }
-        Collections.sort(points, (int[] p1, int[] p2) -> {
-            int posCompare = Integer.compare(p1[0], p2[0]);
-            return posCompare == 0 ? -Integer.compare(p1[1], p2[1]) : posCompare;// Rising edge comes before falling edge
-        });
-
+        points.sort(Comparator.comparingInt((int[] a) -> a[0]).thenComparing((int[] a) -> a[1], Comparator.reverseOrder()));
         List<int[]> ans = new ArrayList<>();
-        Queue<Integer> heights = new PriorityQueue<>(Collections.reverseOrder());// Keeps the maximum height
-        heights.offer(0);// Base of the skyline is at height = 0
+        TreeMap<Integer, Integer> heights = new TreeMap<>();
+        heights.merge(0, 1, Integer::sum);// Base of the skyline is at height = 0
         int prev = 0;
         for (int[] point : points) {
             if (point[1] > 0) {
-                heights.offer(point[1]);// Rising edge
+                heights.merge(point[1], 1, Integer::sum);// Rising edge
             } else {
-                heights.remove(-point[1]);// Falling edge
+                heights.merge(-point[1], -1, Integer::sum);// Falling edge
+                if (heights.get(-point[1]) == 0) {
+                    heights.remove(-point[1]);
+                }
             }
-            if (heights.peek() != prev) {
-                ans.add(new int[]{point[0], heights.peek()});
-                prev = heights.peek();
+            if (heights.lastKey() != prev) {
+                ans.add(new int[]{point[0], heights.lastKey()});
+                prev = heights.lastKey();
             }
         }
         return ans;
