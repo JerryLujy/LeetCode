@@ -12,19 +12,13 @@
  */
 public class RemoveElement {
     public int removeElement(int[] nums, int val) {
-        if (nums == null || nums.length < 1) {
-            return 0;
-        }
-        int l = 0;
-        int r = nums.length - 1;
-        while (l <= r) {
-            if (nums[l] == val) {
-                nums[l] = nums[r];
-                r--;
-            } else {
-                l++;
+        int i = 0, j = 0;
+        while (j < nums.length) {
+            if (nums[j] != val) {
+                nums[i++] = nums[j];
             }
+            j++;
         }
-        return l;
+        return i;
     }
 }
