@@ -13,23 +13,15 @@ public class RemoveDuplicatesFromSortedArray {
         if (nums == null || nums.length < 1) {
             return 0;
         }
-        int shift = 0;
-        int cur = nums[0];
-        int ind = 1;
-        while (ind < nums.length) {
-            if (nums[ind] == cur) {// Encounter duplicate number
-                while (ind < nums.length && nums[ind] == cur) {// Find the next different number
-                    ind++;
-                    shift++;
-                }
+        int i = 0, j = 1;
+        while (j < nums.length) {
+            while (j < nums.length && nums[j] == nums[i]) {
+                j++;
             }
-            if (ind < nums.length) {
-                // Shift the number to its position
-                cur = nums[ind];
-                nums[ind - shift] = cur;
+            if (j < nums.length) {
+                nums[++i] = nums[j];
             }
-            ind++;
         }
-        return nums.length - shift;
+        return i + 1;
     }
 }
