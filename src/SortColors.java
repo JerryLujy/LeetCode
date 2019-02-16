@@ -10,25 +10,15 @@
  */
 public class SortColors {
     public void sortColors(int[] nums) {
-        int l = 0;
-        int r = nums.length - 1;
-        while (l < r) {
-            if (nums[l] == 0) {
-                l++;
-            } else if (nums[r] != 0) {
-                r--;
+        // 3-way partition
+        int l = 0, r = nums.length - 1, cur = 0;
+        while (cur <= r) {
+            if (nums[cur] == 1) {
+                cur++;
+            } else if (nums[cur] == 0) {
+                swap(nums, l++, cur++);
             } else {
-                swap(nums, l, r);
-            }
-        }
-        r = nums.length - 1;
-        while (l < r) {
-            if (nums[l] == 1) {
-                l++;
-            } else if (nums[r] == 2) {
-                r--;
-            } else {
-                swap(nums, l, r);
+                swap(nums, cur, r--);
             }
         }
     }
