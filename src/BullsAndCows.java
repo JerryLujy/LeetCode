@@ -28,10 +28,10 @@ public class BullsAndCows {
                 A++;
                 continue;
             }
-            if (nums[snum] < 0) {
+            if (nums[snum] < 0) { // Found a secret number that has been guessed before
                 B++;
             }
-            if (nums[gnum] > 0) {
+            if (nums[gnum] > 0) { // Guessed a secret number
                 B++;
             }
             nums[snum]++; // Increment if this number is a secret
