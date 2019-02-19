@@ -23,10 +23,7 @@ public class ReconstructItinerary {
     public List<String> findItinerary(String[][] tickets) {
         Map<String, Queue<String>> map = new HashMap<>();
         for (String[] ticket : tickets) {
-            if (!map.containsKey(ticket[0])) {
-                map.put(ticket[0], new PriorityQueue<>());
-            }
-            map.get(ticket[0]).offer(ticket[1]);
+            map.computeIfAbsent(ticket[0], k -> new PriorityQueue<>()).offer(ticket[1]);
         }
         LinkedList<String> ans = new LinkedList<>();
         dfs(map, ans, "JFK");
@@ -34,10 +31,8 @@ public class ReconstructItinerary {
     }
 
     private void dfs(Map<String, Queue<String>> map, LinkedList<String> ans, String cur) {
-        if (map.containsKey(cur)) {
-            while (!map.get(cur).isEmpty()) {
-                dfs(map, ans, map.get(cur).poll());
-            }
+        while (map.containsKey(cur) && !map.get(cur).isEmpty()) {
+            dfs(map, ans, map.get(cur).poll());
         }
         ans.addFirst(cur);
     }
